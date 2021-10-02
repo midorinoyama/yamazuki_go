@@ -1,24 +1,41 @@
-# README
+## アプリケーション名
+yamazuki_go
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+登山者の写真投稿サイト
 
-Things you may want to cover:
+### サイトテーマ
+女性登山者同士で情報共有できる場を作る
 
-* Ruby version
+### テーマを選んだ理由
+父が登山好きで、小さい頃からよく家族で登山に行っていて、その瞬間でしか味わえない自然の景色や山の写真を撮って歩くことが趣味です。
+登山の経験から、男性とは比べると女性だと体力がなかったり、登るペースが違うなど、女性特有の悩みなどもあります。
+女性でも一人で登山する方もいれば、高齢の方でも夫婦やご友人と登山されているのをよく見かけ、
+最近ではYoutuberで元OLの方が登山の動画を発信したり、女性ならではの登山服の特集などもありますが、
+女性登山者同士がネット上で交流する機会があまりないと思い、行ったことのある山の写真や感想を共有できるように
+このテーマを選びました。
 
-* System dependencies
+### ターゲットユーザ
+登山初心者の女性(20～50代)
 
-* Configuration
+### 主な利用シーン
+登れるのか不安に思う時に他の女性がどんな山に登っているのか知ることで判断材料になる
+/自分の登山写真を投稿できる、いつどの山にったのか記録（アルバム）としても利用できる
 
-* Database creation
+## 設計書
+PFのテーマ合格後に設計書の作成に取り組む予定
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1hae4FHOlYjAFBkyVTHIsM70NyQriCNRonMSANagf56g/edit#gid=0
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+現段階では使用するか未定です
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
