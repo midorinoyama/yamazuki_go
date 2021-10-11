@@ -4,8 +4,8 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :nickname %>
-    <%= f.nickname_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
     <%#autofocus true:ページ読み込み後にautofocus属性が記述されている部分にカーソルが移動、1つのhtmlファイルに1つまで
        autocomplete:自動入力（過去に入力した情報を候補に表示）を有効にする%>
   </div>
