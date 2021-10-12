@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image_id: MyString
+  user_id: 1
+  title: MyString
+  content: MyText
+  mountain: MyString
+  prefecture: MyString
+  filmed_on: 2021-10-12
+
+two:
+  image_id: MyString
+  user_id: 1
+  title: MyString
+  content: MyText
+  mountain: MyString
+  prefecture: MyString
+  filmed_on: 2021-10-12
