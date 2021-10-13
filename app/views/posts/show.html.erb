@@ -1,0 +1,10 @@
+<div>
+  <%= attachment_image_tag @post, :image, :fill, 200, 200 %>
+  <p>投稿ユーザー画像：<%#= image_tag('sample-author1.jpg') %></p>
+  <p>山:</p><%= @post.mountain %>
+  <p>場所:</p><%= @post.prefecture %>
+  <p>撮影日:</p><%= @post.filmed_on %>
+  <p>説明：<%= @post.content %></p>
+  <p>ユーザーネーム：<%= @post.user.nickname %></p>
+  <%= link_to "編集する", edit_post_path(@post.id) %>
+</div>

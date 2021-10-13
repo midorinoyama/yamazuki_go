@@ -1,9 +1,13 @@
 <% @posts.each do |post| %>
 <div>
-  <%= attachment_image_tag post, :image %>
-  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
+  <%= link_to post_path(post.id) do %>
+  <%= attachment_image_tag post, :image, :fill, 200, 200 %>
+  <% end %>
+  <p>投稿ユーザー画像：<%#= image_tag('sample-author1.jpg') %></p>
   <p>タイトル：<%= post.title %></p>
-  <p>説明：<%= post.content %></p>
-  <p>ユーザーネーム：<%= post.user.name %></p>
+  <p>山:</p><%= post.mountain %>
+  <p>場所:</p><%= post.prefecture %>
+  <p>撮影日:</p><%= post.filmed_on %>
+  <p>ユーザーネーム：<%= post.user.nickname %></p>
 </div>
 <% end %>
