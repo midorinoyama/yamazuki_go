@@ -7,5 +7,7 @@
   <p>撮影日:</p><%= @post.filmed_on %>
   <p>説明：<%= @post.content %></p>
   <p>ユーザーネーム：<%= @post.user.nickname %></p>
-  <%= link_to "編集する", edit_post_path(@post.id) %>
+  <% if @post.user == current_user %>
+    <%= link_to "編集する", edit_post_path(@post.id) %>
+  <% end %>
 </div>
