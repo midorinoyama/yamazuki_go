@@ -10,6 +10,7 @@
   <%= f.text_field :mountain %>
   <h4>場所</h4>
   <%= f.select :prefecture, Post.prefectures.keys, {} %>
+  <%#モデル名.カラム名複数形.keysでenumで定義した配列を呼び出している%>
   <h4>説明</h4>
   <%= f.text_area :content %>
   <%= f.submit '投稿' %>
