@@ -2,7 +2,7 @@
   <% if user_signed_in? %><%#ログインしてる状態のヘッダー%>
     <li>
       <%= link_to user_path(current_user.id) do %>
-      <span><%= current_user.nickname %>マイページ</span>
+        <span><%= current_user.nickname %>マイページ</span>
       <% end %>
     </li>
     <li>
