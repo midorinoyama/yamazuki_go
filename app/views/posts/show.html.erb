@@ -10,4 +10,5 @@
   <% if @post.user == current_user %>
     <%= link_to "編集する", edit_post_path(@post.id) %>
   <% end %>
+  <%= render "favorites/favorite-btn", post: @post %>
 </div>

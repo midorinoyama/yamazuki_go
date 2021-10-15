@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   #deivseを使用するURLにusersを含む
   root to: 'homes#top'
   resources :users, only: [:index, :show, :edit, :update]
-  resources :posts
-    resources :favorites, only: [:create, :destroy]
+  resources :posts do
+    resource :favorites, only: [:create, :destroy]
+  end
 end
