@@ -2,6 +2,11 @@ class Post < ApplicationRecord
   belongs_to :user
   attachment :image
   #refileがカラム名にアクセスするためのもの、imageはカラム名だがidはつけない
+  has_many :favorites, dependent: :destroy
+
+  def favorited_by?(user)#favoritesテーブルにuser_idがそんざいしているかどうか
+    favorites.where(user_id: user.id).exists?
+  end
 
   enum prefecture: {
     "---": 0,
