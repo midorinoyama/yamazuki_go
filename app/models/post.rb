@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   attachment :image
   #refileがカラム名にアクセスするためのもの、imageはカラム名だがidはつけない
   has_many :favorites, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   def favorited_by?(user)#favoritesテーブルにuser_idがそんざいしているかどうか
     favorites.where(user_id: user.id).exists?
