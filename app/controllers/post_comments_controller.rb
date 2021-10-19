@@ -22,6 +22,9 @@ class PostCommentsController < ApplicationController
     redirect_to post_path(post.id)
   end
 
-  private post_comment_params
-  params.require(:post_comment).permit(:comment)
+  private
+  def post_comment_params
+    params.require(:post_comment).permit(:comment)
+  end
+
 end
