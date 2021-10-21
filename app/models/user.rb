@@ -10,6 +10,27 @@ class User < ApplicationRecord
   attachment :profile_image
   #refileがカラム名にアクセスするためのもの、imageはカラム名だがidはつけない
 
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  #外部キーの指定によりフォローする側から自分がフォローしている人取得
+  has_many :followings, through: :relationships, source: :followed
+  #自分がフォローしている人一覧(throughでテーブル指定、sourceでrelationship.rbに記述したモデル指定)
+  has_many :reverse_of_relationships, class_name:"Relationship", foreign_key: "followed_id", dependent: :destroy
+  #フォローされる側からフォローされている人取得
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+  #自分をフォローしている人一覧
+
+  def follow(user_id)#フォローする
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)#フォローを外す
+    relationships.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)#フォローしていればtrueを返す
+    followings.include?(user)
+  end
+
   enum gender: { "": 0, "男性": 1, "女性": 2 }, _prefix: true
 
   enum age: { "": 0, "10代": 1, "20代": 2, "30代": 3, "40代": 4, "50代": 5, "60代": 6, "70代以上": 70 },  _prefix: true
