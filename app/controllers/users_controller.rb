@@ -18,6 +18,18 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def followings
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+  end
+
+  private
+
   def user_params
     params.require(:user).permit(:nickname, :profile_image, :introduction, :gender,:age, :prefecture)
   end

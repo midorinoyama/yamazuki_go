@@ -1,15 +1,43 @@
 <h1>マイページ</h1>
 <div class="container">
-  <%#@user.p%>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle"; %>
-  <%= @user.nickname %>
+<table class="table">
+  <tr><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %>
+  <%= @user.nickname %></tr>
+  <tr>
+    <th>フォロー</th>
+    <th><%= link_to followings_path(@user.id) do %>
+          <%= @user.followings.count %>
+        <% end %>
+    </th>
+  </tr>
+  <tr>
+    <th>フォロワー</th>
+    <th><%= link_to followers_path(@user.id) do %>
+          <%= @user.followers.count %>
+        <% end %>
+    </th>
+  </tr>
+</table>
+
+<div class='row'>
+  <% if current_user != @user %>
+    <% if current_user.following?(@user) %>
+      <%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class: "btn btn-light" %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= link_to '',edit_user_path(@user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{@user.id}" %>
+  <% end %>
+</div>
+
+
+
   <%= @user.prefecture %>
   <%= @user.introduction %>
   <%= @user.age %>
   <%= @user.gender %>
-  <% if @user.id == current_user.id %>
-    <%= link_to "プロフィール編集", edit_user_path(@user) %>
-  <% end %>
+
 
   <div class="row">
     <% @posts.each do |post| %>
