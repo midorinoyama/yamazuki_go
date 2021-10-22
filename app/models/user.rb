@@ -31,6 +31,14 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.search_for(content, method)
+    if method == "perfect"
+      User.where(nickname: content)
+    else
+      User.where("nickname LIKE ?", "%"+content+"%")
+    end
+  end
+
   enum gender: { "": 0, "男性": 1, "女性": 2 }, _prefix: true
 
   enum age: { "": 0, "10代": 1, "20代": 2, "30代": 3, "40代": 4, "50代": 5, "60代": 6, "70代以上": 70 },  _prefix: true

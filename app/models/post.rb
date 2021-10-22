@@ -9,6 +9,14 @@ class Post < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
+  def self.search_for(content, method)
+    if method == "perfect"
+      Post.where(mountain: content).or(Post.where(prefecture: content))
+    else
+      Post.where("mountain LIKE ?", "%"+content+"%").or(Post.where("prefecture LIKE ?", "%"+content+"%"))
+    end
+  end
+
   enum prefecture: {
     "---": 0,
     "北海道": 1, "青森県": 2, "岩手県": 3, "宮城県": 4, "秋田県": 5, "山形県": 6, "福島県": 7,
