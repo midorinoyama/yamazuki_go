@@ -14,13 +14,7 @@
             <%= user.nickname %>
           </h4>
           <p class="card-text"><%= user.introduction %></p>
-          <% if current_user != user %>
-            <% if current_user.following?(user) %>
-              <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn btn-light" %>
-            <% else %>
-              <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
-            <% end %>
-          <% end %>
+          <%= render 'users/follow-btn', user: user %>
         </div>
       </div></div>
     </div>
