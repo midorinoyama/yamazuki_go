@@ -12,7 +12,12 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <%= render 'layouts/search' %>
+    <main>
+      <%# if user_signed_in? %>
+        <%#= render 'layouts/search' %>
+      <%# end %>
     <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

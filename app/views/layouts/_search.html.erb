@@ -2,7 +2,10 @@
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <%= f.select :model, options_for_select({ "山名" => "post", "スポット(県)" => "post", "ユーザー" => "user", }) %>
     <%= f.text_field :content %>
-    <%= f.select :method, options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }) %>
-    <%= f.submit "検索"%>
+    <% f.select :method, options_for_select({ "部分一致" => "partial" }) %>
+    <%#= f.select :method, options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }) %>
+    <%= button_tag type: "submit", class: "btn btn-primary" do %>
+      <i class="fas fa-search"></i>
+    <% end %>
   <% end %>
 </div>

@@ -32,11 +32,11 @@ class User < ApplicationRecord
   end
 
   def self.search_for(content, method)
-    if method == "perfect"
-      User.where(nickname: content)
-    else
+    #if method == "perfect"
+      #User.where(nickname: content)
+    #else
       User.where("nickname LIKE ?", "%"+content+"%")
-    end
+    #end
   end
 
   enum gender: { "": 0, "男性": 1, "女性": 2 }, _prefix: true

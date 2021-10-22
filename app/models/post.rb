@@ -10,11 +10,11 @@ class Post < ApplicationRecord
   end
 
   def self.search_for(content, method)
-    if method == "perfect"
-      Post.where(mountain: content).or(Post.where(prefecture: content))
-    else
+    #if method == "perfect"
+      #Post.where(mountain: content).or(Post.where(prefecture: content))
+    #else
       Post.where("mountain LIKE ?", "%"+content+"%").or(Post.where("prefecture LIKE ?", "%"+content+"%"))
-    end
+    #end
   end
 
   enum prefecture: {
