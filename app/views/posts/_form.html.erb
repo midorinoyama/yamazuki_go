@@ -1,0 +1,30 @@
+ <%= form_with model: @post, local:true do |f| %>
+    <div class="form-group">
+      <%= f.label :"写真を選ぶ" %></br>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"山名"%>
+      <%= f.text_field :mountain, placeholder:"富士山", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"場所" %>
+      <%= f.select :prefecture, Post.prefectures.keys, {}, class: "form-control" %>
+      <%#モデル名.カラム名複数形.keysでenumで定義した配列を呼び出している%>
+    </div>
+    <div class="form-group">
+      <%= f.label :"撮影日" %>
+      <%= f.date_field :filmed_on, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"タイトル"%>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"コメント"%>
+      <%= f.text_area :content, size:"90x3", class: "form-control" %>
+    </div>
+    <div class="form-group text-center">
+      <%= f.submit "この内容で投稿する", class: "btn btn-primary" %>
+    </div>
+<% end %>
