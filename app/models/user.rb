@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   #自分をフォローしている人一覧
 
+  validates :nickname, length: {maximum: 20, minimum: 2}, uniqueness: true
+  validates :introduction, length: {maximum:50}
+
   def follow(user_id)#フォローする
     relationships.create(followed_id: user_id)
   end

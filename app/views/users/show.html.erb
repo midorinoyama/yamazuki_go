@@ -1,50 +1,47 @@
 <div class="container">
-  <div class="row">
-  <div class="col-md-3">
-<table class="table">
-  <tr><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %>
-  <%= @user.nickname %></tr>
-  <tr>
-    <th>フォロー</th>
-    <th><%= link_to followings_path(@user.id) do %>
-          <%= @user.followings.count %>
+  <div class="row mx-auto mt-5">
+    <div class="col-md-3">
+      <table class="table table-borderless">
+        <tr><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %></tr>
+        <tr>
+          <th><%= @user.nickname %></th>
+          <th><% if current_user != @user %>
+                <%= render 'users/follow-btn', user: @user %>
+              <% end %></th>
+        </tr>
+        <tr>
+          <td>フォロー中</td>
+          <td><%= link_to followings_path(@user.id) do %>
+                <%= @user.followings.count %>
+              <% end %></td>
+        </tr>
+        <tr>
+          <td>フォロワー</td>
+          <td><%= link_to followers_path(@user.id) do %>
+                <%= @user.followers.count %>
+              <% end %></td>
+        </tr>
+        <tr>
+        <% if current_user == @user %>
+          <td>いいね！した写真</td>
+          <td><%= link_to favorites_path(@user.id) do %>
+                <%= @user.favorites.count %>
+              <% end %></td>
         <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>フォロワー</th>
-    <th><%= link_to followers_path(@user.id) do %>
-          <%= @user.followers.count %>
-        <% end %>
-    </th>
-  </tr>
-  <tr>
-    <% if current_user == @user %>
-    <th>いいね！した写真</th>
-    <th><%= link_to favorites_path(@user.id) do %>
-      <%= @user.favorites.count %>
-      <% end %>
-    </th>
-    <% end %>
-  </tr>
-</table>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <div class="info">
+        <%= @user.prefecture %> <%= @user.age %> <%= @user.gender %>
+        <div class="info-text"><%= @user.introduction %></div>
+        <div class="info-btn">
+          <% if current_user == @user %>
+            <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-info btn-sm" %>
+          <% end %></div>
+      </div>
 
-  <% if current_user != @user %>
-    <%= render 'users/follow-btn', user: @user %>
-  <% else %>
-    <%= link_to "プロフィールを編集する" ,edit_user_path(@user) %>
-  <% end %>
-
-</div>
-
-<div class="col-md-8 offset-md-1">
-  <%= @user.prefecture %>
-  <%= @user.introduction %>
-  <%= @user.age %>
-  <%= @user.gender %>
-
-
-  <div class="row">
+  <div class="row mt-5">
     <% @posts.each do |post| %>
 
     <div class="col-md-3">
@@ -63,6 +60,8 @@
     </div>
     <% end %>
   </div>
+    </div>
+
   </div>
   </div>
 </div>

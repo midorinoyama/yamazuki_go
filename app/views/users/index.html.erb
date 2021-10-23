@@ -13,7 +13,6 @@
             <% end %>
             <%= user.nickname %>
           </h4>
-          <p class="card-text"><%= user.introduction %></p>
           <% if current_user != user %><%#自分のアカウントにはフォローボタンを表示させないようにする%>
             <%= render 'users/follow-btn', user: user %>
           <% end %>

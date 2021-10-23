@@ -1,36 +1,40 @@
-<h2>Sign up</h2>
-
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-    <%#autofocus true:ページ読み込み後にautofocus属性が記述されている部分にカーソルが移動、1つのhtmlファイルに1つまで
-       autocomplete:自動入力（過去に入力した情報を候補に表示）を有効にする%>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="container">
+  <h2 class="head-title my-5">会員登録</h2>
+    <div class="row">
+      <div class="col-md-6 my-auto mx-auto">
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="form-group">
+            <%= f.label :"ニックネーム" %><br />
+            <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "form-control" %>
+            <%#autofocus true:ページ読み込み後にautofocus属性が記述されている部分にカーソルが移動、1つのhtmlファイルに1つまで
+               autocomplete:自動入力（過去に入力した情報を候補に表示）を有効にする%>
+          </div>
+          <div class="form-group">
+            <%= f.label :"メールアドレス"%>
+            <%= f.email_field :email, placeholder: "sample@example.com", autocomplete: "email", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"パスワード" %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"パスワード(確認用)" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "登録", class: "btn btn-md btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 my-5">
+        <p><会員登録がお済みの方><br>
+          <%= link_to "こちら", new_session_path(resource_name) %>からログインしてください。</p>
+      </div>
+    </div>
+</div>
