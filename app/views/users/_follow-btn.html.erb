@@ -1,7 +1,5 @@
-<% unless current_user == user %><%#自分のアカウントにはフォローボタンを表示させないようにする%>
-   <% if current_user.following?(user) %><%#フォローしているかどうか判断%>
-      <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn btn-light" %>
-   <% else %>
-      <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
-   <% end %>
- <% end %>
+<% if current_user.following?(user) %><%#フォローしているかどうか判断%>
+   <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn btn-light" %>
+<% else %>
+   <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
+<% end %>

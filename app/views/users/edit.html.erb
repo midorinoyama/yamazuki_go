@@ -1,3 +1,4 @@
+
 <%= form_with model:@user, local:true do |f| %>
  <div class="form-group">
      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
@@ -25,6 +26,6 @@
      <%= f.text_area :introduction %>
  </div>
  <div class="form-group">
-     <%= f.submit "プロフィールの内容を保存する" %>
+     <%= f.submit "内容を保存する" %>
  </div>
  <% end %>

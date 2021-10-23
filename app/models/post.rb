@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true,
              length: { maximum: 500 }
-             
+
 
   def favorited_by?(user)#favoritesテーブルにuser_idがそんざいしているかどうか
     favorites.where(user_id: user.id).exists?
@@ -17,10 +17,9 @@ class Post < ApplicationRecord
 
   def self.search_for(content, method)
     #if method == "perfect"
-      #Post.where(mountain: content).or(Post.where(prefecture: content))
+      #Post.where(mountain: content)
     #else
-      Post.where("mountain LIKE ?", "%"+content+"%").or(Post.where("prefecture LIKE ?", "%"+content+"%"))
-    #end
+      Post.where("mountain LIKE ?", "%"+content+"%")
   end
 
   enum prefecture: {

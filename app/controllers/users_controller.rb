@@ -28,6 +28,13 @@ class UsersController < ApplicationController
     @users = user.followers
   end
 
+  def favorites
+    user = User.find(params[:id])
+    favorites = Favorite.where(user_id: user.id).pluck(:post_id)
+    #pluck:指定したモデルのカラムのレコードをすべて取得(User.findで取得したidのユーザーがいいねしたレコードと一緒にpost_idを取得)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
 
   def user_params
