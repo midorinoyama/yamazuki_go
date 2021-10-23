@@ -1,0 +1,11 @@
+<% if object.errors.any? %><%#errorsメソッド：エラーの内容を確認できる
+any:エラーが発生しているか判断、full_message：エラー内容を出力%>
+  <div id="error_explanation">
+    <h3><%= object.errors.count %>件のエラーがあります。</h3>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

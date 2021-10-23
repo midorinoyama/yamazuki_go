@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
 
   validates :image, presence: true
+  validates :filmed_on, presence: true
+  validates :mountain, presence:true
   validates :title, presence: true
   validates :content, presence: true,
              length: { maximum: 500 }
