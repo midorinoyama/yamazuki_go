@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   #自分をフォローしている人一覧
 
+  validates :nickname, length: {maximum: 20, minimum: 2}, uniqueness: true
+  validates :introduction, length: {maximum:50}
+
   def follow(user_id)#フォローする
     relationships.create(followed_id: user_id)
   end
@@ -29,6 +32,14 @@ class User < ApplicationRecord
 
   def following?(user)#フォローしていればtrueを返す
     followings.include?(user)
+  end
+
+  def self.search_for(content, method)
+    #if method == "perfect"
+      #User.where(nickname: content)
+    #else
+      User.where("nickname LIKE ?", "%"+content+"%")
+    #end
   end
 
   enum gender: { "": 0, "男性": 1, "女性": 2 }, _prefix: true

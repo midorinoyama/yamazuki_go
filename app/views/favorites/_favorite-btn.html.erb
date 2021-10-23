@@ -1,5 +1,7 @@
-<% if post.favorited_by?(current_user) %>
-  <%= link_to post.favorites.count, post_favorites_path(post), method: :delete, class: "fas fa-heart heart_red" %>
-<% else %>
-  <%= link_to post.favorites.count, post_favorites_path(post), method: :post, class: "fas fa-heart heart_blue" %>
+<% unless post.user == current_user %><%#自分が投稿した写真には表示させないようにする%>
+  <% if post.favorited_by?(current_user) %><%##favoritesテーブルにuser_idがそんざいしているかどうか=いいねしたかどうか判断%>
+    <%= link_to post.favorites.count, post_favorites_path(post), method: :delete, class: "fas fa-heart heart_red" %>
+  <% else %>
+    <%= link_to post.favorites.count, post_favorites_path(post), method: :post, class: "fas fa-heart heart_blue" %>
+  <% end %>
 <% end %>

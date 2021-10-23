@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row mt-5">
-    <% @posts.each do |post| %>
+    <h2>フォトランキング</h2>
+    <% @post_ranks.each.with_index(1) do |post,i| %>
+    <p>第<%= i %>位</p>
     <div class="col-md-3">
       <div class="card">
         <%= link_to post_path(post.id) do %>
@@ -21,4 +23,3 @@
     <% end %>
   </div>
 </div>
-

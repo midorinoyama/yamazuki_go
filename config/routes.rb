@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   end
   get 'users/:id/followings' => 'users#followings', as: 'followings'
   get 'users/:id/followers' => 'users#followers', as: 'followers'
+  get 'users/:id/favorites' => 'users#favorites', as: 'favorites'
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+  get '/search' => 'searches#search'
+  get '/ranks' => 'ranks#rank'
 end

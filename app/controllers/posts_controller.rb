@@ -8,12 +8,15 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
+    if @post.save
     redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order#新着順で表示
   end
 
   def show
@@ -24,12 +27,20 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user == current_user
+      render :edit
+    else
+      redirect_to posts_path#他人の投稿編集ページにurl入力しても遷移できないように
+    end
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
