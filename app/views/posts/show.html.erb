@@ -13,22 +13,21 @@
           <p><%= @post.mountain %>(<%= @post.prefecture %>) |
           撮影日:<%= @post.filmed_on.strftime('%Y/%m/%d') %></p>
           <h5 class="text-title"><%= @post.title %></h5>
-          <p class="text-body"><%= @post.content %></p>
-          <p class="text-time">投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          <p class="text-body"><%=safe_join(@post.content.split("\n"),tag(:br))%></p><%#text\_areaの改行とスペース表示%>
+          <p class="text-time text-right">投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %></p>
         </div>
 
-      <div class="field">
+      <div class="field text-right">
         <% if @post.user == current_user %>
-          <%= link_to "投稿内容を編集する", edit_post_path(@post.id) %>
+          <%= link_to "投稿内容を編集する", edit_post_path(@post.id), class: "btn btn-outline-primary" %>
         <% end %>
       </div>
+      <div class="field-link text-right mt-5">
+        <%= link_to "一覧に戻る", posts_path, class: "btn btn-secondary"%>
       </div>
+      <h5 class="comment-area mt-5">コメント一覧(<%= @post.post_comments.count %>)件</h5>
+        <%= render 'posts/comment', post: @post, post_comment: @post_comment, post_comments: @post_comments %>
     </div>
-
-    <div class="col-md-6">
-      <p>コメント一覧(<%= @post.post_comments.count %>)件</p>
-      <%= render 'posts/comment', post: @post, post_comment: @post_comment %>
-    </div>
-  </div>
+   </div>
 </div>
 

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    #コメントの新規投稿
+    @post_comments = @post.post_comments.page(params[:page]).per(10)
   end
 
   def edit

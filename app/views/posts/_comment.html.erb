@@ -1,21 +1,28 @@
 <table>
-  <% @post.post_comments.each do |post_comment| %>
+  <% post_comments.reverse_order.each do |post_comment| %><%#reverse_order:新着順で要素を取り出す%>
   <tr>
     <td>
       <%= link_to user_path(post_comment.user.id) do %>
-        <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %>
+        <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %><br>
         <%= post_comment.user.nickname %>
       <% end %>
     </td>
-    <td><%= post_comment.comment %></td>
-    <td><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-    <% if post_comment.user == current_user %>
-    <td><%= link_to "削除する", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete %></td>
-    <% end %>
+    <td><%=safe_join(post_comment.comment.split("\n"),tag(:br))%></td>
+      <% if post_comment.user == current_user %>
+    <td><%= link_to "削除する", post_post_comment_path(post_comment.post_id, post_comment.id), method: :delete, class: "btn btn-warning", "data-confirm" => "コメントを削除しますか？" %></td>
+      <% end %>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+    <td><%= time_ago_in_words(post_comment.created_at) %></td><%#何分前の投稿か時間表示English%>
   </tr>
   <% end %>
 </table>
-<%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-  <%= f.text_area :comment, size:"90x3", placeholder: "コメントしてみよう"%>
-  <%= f.submit "コメントする", class: "btn btn-secondary" %>
-<% end %>
+  <%= paginate post_comments %><%#コメント一覧のみページング%>
+<div class="form-group mt-5">
+  <%= form_with(model:[post, post_comment], local: true) do |f| %>
+    <%= f.text_area :comment, size:"60x3", placeholder: "コメントしてみよう"%>
+    <%= f.submit "コメントする", class: "btn btn-secondary mb-5" %>
+  <% end %>
+</div>
+

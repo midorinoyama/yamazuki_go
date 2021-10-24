@@ -1,11 +1,12 @@
 <div class="container">
+  <h5 class="text-center mt-3">投稿済みの写真</h5>
   <div class="row mx-auto mt-5">
-    <div class="col-md-2">
+    <div class="col-md-3">
       <table class="table table-borderless">
         <tr><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %></tr>
         <tr>
-          <th><%= @user.nickname %></th>
-          <th><% if current_user != @user %>
+          <th><%= @user.nickname %>
+              <% if current_user != @user %>
                 <%= render 'users/follow-btn', user: @user %>
               <% end %></th>
         </tr>
@@ -32,18 +33,13 @@
       </table>
       <div class="info">
         <%= @user.prefecture %> <%= @user.age %> <%= @user.gender %>
-        <div class="info-text"><%= @user.introduction %></div>
+        <div class="info-text"><%=safe_join(@user.introduction.split("\n"),tag(:br))%></div><%#改行とスペースを反映させる%>
         <div class="info-btn">
           <% if current_user == @user %>
             <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-info btn-sm" %>
           <% end %></div>
       </div>
     </div>
-    <div class="col-md-10">
-
-      <div class="row">
-        <%= render 'posts/index', posts: @posts %>
-      </div>
-    </div>
+    <%= render 'posts/index', posts: @posts %><%#自身が投稿した一覧表示%>
   </div>
 </div>
