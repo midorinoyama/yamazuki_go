@@ -38,3 +38,6 @@ https://docs.google.com/spreadsheets/d/1hae4FHOlYjAFBkyVTHIsM70NyQriCNRonMSANagf
 ## 使用素材
 - Font Awesome(Webアイコンフォトサービス)
 https://fontawesome.com/
+- ぱくたそ (写真素材)
+https://www.pakutaso.com/
+- 写真 自身で撮影したものも使用

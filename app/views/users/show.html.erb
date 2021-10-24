@@ -33,11 +33,18 @@
       </table>
       <div class="info">
         <%= @user.prefecture %> <%= @user.age %> <%= @user.gender %>
-        <div class="info-text"><%=safe_join(@user.introduction.split("\n"),tag(:br))%></div><%#改行とスペースを反映させる%>
+        <div class="info-text">
+          <%if @user.introduction.nil? %><%#自己紹介が空欄だとエラー発生、空白(nill)ならtrueを返す%>
+            <%= @user.introduction %><%#空白を表示%>
+          <% else %>
+            <%= safe_join(@user.introduction.split("\n"),tag(:br))%><%#改行とスペースを反映させる%>
+          <% end %>
+        </div>
         <div class="info-btn">
           <% if current_user == @user %>
             <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-info btn-sm" %>
-          <% end %></div>
+          <% end %>
+        </div>
       </div>
     </div>
     <%= render 'posts/index', posts: @posts %><%#自身が投稿した一覧表示%>

@@ -8,6 +8,7 @@ class PostCommentsController < ApplicationController
     # (ログインしている)userに紐づいたコメントを取得
     @post_comment.post_id = @post.id
     #投稿に紐づいたコメントを取得
+    @post_comments = @post.post_comments.page(params[:page]).per(10)#post/showに遷移する時
     if @post_comment.save
       redirect_to post_path(@post.id)
     else
