@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mx-auto mt-5">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <table class="table table-borderless">
         <tr><%= attachment_image_tag @user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %></tr>
         <tr>
@@ -30,8 +30,6 @@
         <% end %>
         </tr>
       </table>
-    </div>
-    <div class="col-md-8 offset-md-1">
       <div class="info">
         <%= @user.prefecture %> <%= @user.age %> <%= @user.gender %>
         <div class="info-text"><%= @user.introduction %></div>
@@ -40,28 +38,12 @@
             <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-info btn-sm" %>
           <% end %></div>
       </div>
+    </div>
+    <div class="col-md-10">
 
-  <div class="row mt-5">
-    <% @posts.each do |post| %>
-
-    <div class="col-md-3">
-      <div class="card">
-        <%= link_to post_path(post.id) do %>
-          <%= attachment_image_tag post, :image, size: "200x200", class: "card-img-top" %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= post.mountain %>(<%= post.prefecture %>)</p>
-          <%= post.filmed_on %>
-          <%= post.user.nickname %>
-          <%= render "favorites/favorite-btn", post: post %>
-        </div>
+      <div class="row">
+        <%= render 'posts/index', posts: @posts %>
       </div>
     </div>
-    <% end %>
-  </div>
-    </div>
-
-  </div>
   </div>
 </div>
