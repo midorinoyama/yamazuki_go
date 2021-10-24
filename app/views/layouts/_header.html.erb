@@ -12,11 +12,11 @@
           <% if user_signed_in? %><%#ログインしてる状態のヘッダー%>
             <li>
               <%= link_to user_path(current_user.id), class: "nav-link text-dark" do  %>
-                <span><%= current_user.nickname %>マイページ</span>
+                <span><%= current_user.nickname %>さん<br>マイページ</span>
               <% end %>
             </li>
             <li>
-              <%= link_to "新規投稿", new_post_path, class: "nav-link text-dark" %>
+              <%= link_to "投稿", new_post_path, class: "nav-link text-dark" %>
             </li>
             <li>
               <%= link_to "投稿一覧", posts_path, class: "nav-link text-dark" %>
