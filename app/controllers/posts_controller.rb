@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def new
     @post = Post.new
   end
@@ -15,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order#新着順で表示
+    @posts = Post.page(params[:page]).reverse_order # 新着順で表示
   end
 
   def show
@@ -29,7 +28,7 @@ class PostsController < ApplicationController
     if @post.user == current_user
       render :edit
     else
-      redirect_to posts_path#他人の投稿編集ページにurl入力しても遷移できないように
+      redirect_to posts_path # 他人の投稿編集ページにurl入力しても遷移できないように
     end
   end
 
@@ -49,8 +48,8 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:title, :content, :image, :filmed_on, :mountain, :prefecture)
   end
-
 end

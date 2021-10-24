@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).reverse_order#pageメソッドでそのユーザーに紐づく投稿のみ表示
+    @posts = @user.posts.page(params[:page]).reverse_order # pageメソッドでそのユーザーに紐づく投稿のみ表示
   end
 
   def edit
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user == current_user
       render :edit
     else
-      redirect_to user_path(current_user.id)#他ユーザーのeditページにurl入力しても遷移できない
+      redirect_to user_path(current_user.id) # 他ユーザーのeditページにurl入力しても遷移できない
     end
   end
 
@@ -39,13 +39,13 @@ class UsersController < ApplicationController
   def favorites
     user = User.find(params[:id])
     favorites = Favorite.where(user_id: user.id).pluck(:post_id)
-    #pluck:指定したモデルのカラムのレコードをすべて取得(User.findで取得したidのユーザーがいいねしたレコードと一緒にpost_idを取得)
+    # pluck:指定したモデルのカラムのレコードをすべて取得(User.findで取得したidのユーザーがいいねしたレコードと一緒にpost_idを取得)
     @favorite_posts = Post.find(favorites)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :profile_image, :introduction, :gender,:age, :prefecture)
+    params.require(:user).permit(:nickname, :profile_image, :introduction, :gender, :age, :prefecture)
   end
 end

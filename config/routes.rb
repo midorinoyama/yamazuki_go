@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  #deivseを使用するURLにusersを含む
+  # deivseを使用するURLにusersを含む
   root to: 'homes#top'
   resources :users, only: [:index, :show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
