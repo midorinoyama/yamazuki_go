@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_060753) do
+ActiveRecord::Schema.define(version: 2021_10_25_043231) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_10_20_060753) do
     t.text "comment"
     t.integer "user_id"
     t.integer "post_id"
-    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
