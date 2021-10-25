@@ -10,9 +10,9 @@ class PostCommentsController < ApplicationController
     # 投稿に紐づいたコメントを取得
     @post_comments = @post.post_comments.page(params[:page]).per(10) # post/showに遷移する時
     if @post_comment.save
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: "コメントしました"
     else
-      render 'posts/show'
+      redirect_to post_path(@post.id)#render 'posts/show'で、空欄で投稿しページネーションを選ぶとルーティングエラーになる
     end
   end
 

@@ -17,9 +17,6 @@ class Post < ApplicationRecord
   end
 
   def self.search_for(content, method)
-    # if method == "perfect"
-    # Post.where(mountain: content)
-    # else
     Post.where("mountain LIKE ?", "%" + content + "%")
   end
 

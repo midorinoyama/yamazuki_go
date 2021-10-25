@@ -7,14 +7,14 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path
+      redirect_to post_path(@post), notice: "投稿に成功しました"
     else
       render :new
     end
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order # 新着順で表示
+    @posts = Post.page(params[:page]).per(12).reverse_order # 新着順で表示
   end
 
   def show
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: "編集に成功しました"
     else
       render :edit
     end

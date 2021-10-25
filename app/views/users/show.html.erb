@@ -48,5 +48,6 @@
       </div>
     </div>
     <%= render 'posts/index', posts: @posts %><%#自身が投稿した一覧表示%>
-  </div>
+
+  </div><%= paginate @posts %>
 </div>
