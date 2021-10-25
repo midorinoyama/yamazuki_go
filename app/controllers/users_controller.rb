@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(16)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).reverse_order # pageメソッドでそのユーザーに紐づく投稿のみ表示
+    @posts = @user.posts.page(params[:page]).per(11).reverse_order # pageメソッドでそのユーザーに紐づく投稿のみ表示
   end
 
   def edit
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id), notice: "編集に成功しました"
     else
       render :edit
     end
@@ -28,19 +28,20 @@ class UsersController < ApplicationController
 
   def followings
     user = User.find(params[:id])
-    @users = user.followings
+    @users = user.followings.page(params[:page]).per(16)
   end
 
   def followers
     user = User.find(params[:id])
-    @users = user.followers
+    @users = user.followers.page(params[:page]).per(16)
   end
 
   def favorites
     user = User.find(params[:id])
     favorites = Favorite.where(user_id: user.id).pluck(:post_id)
-    # pluck:指定したモデルのカラムのレコードをすべて取得(User.findで取得したidのユーザーがいいねしたレコードと一緒にpost_idを取得)
+    # pluck:指定したモデルのカラムのレコードをすべて取得(そのユーザーがいいねしたpost_idをfavoritesテーブルから検索)
     @favorite_posts = Post.find(favorites)
+    # 見つけたpost_idの情報をPostsテーブルから探し代入
   end
 
   private
