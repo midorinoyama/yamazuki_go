@@ -1,8 +1,8 @@
 <div class="container">
-　<h3 class="head-title my-5">みんながいいね！した写真ランキング</h3>
+　<h3 class="head-title my-5">みんながいいね！した写真ランキング(1位～6位)</h3>
   <div class="row mt-5">
     <% @post_ranks.each.with_index(1) do |post,i| %>
-    <div class="card-deck col-md-4 mb-3">
+    <div class="card-deck col-sm-6 col-lg-4 mb-3">
       <div class="card text-center">
         <h5><i class="fas fa-crown" style="color: orange;"></i> 第<%= i %>位 <i class="fas fa-heart" style="color: pink;"></i> <%= post.favorites.count %></h5>
         <%= link_to post_path(post.id) do %>
