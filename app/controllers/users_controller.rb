@@ -42,6 +42,8 @@ class UsersController < ApplicationController
     # pluck:指定したモデルのカラムのレコードをすべて取得(そのユーザーがいいねしたpost_idをfavoritesテーブルから検索)
     @favorite_posts = Post.find(favorites)
     # 見つけたpost_idの情報をPostsテーブルから探し代入
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
+    #findやwhereメソッドはArrayオブジェクト(配列)、pageの使用方法が変わる(通常はActiveRecordオブジェクトに対して)
   end
 
   private
