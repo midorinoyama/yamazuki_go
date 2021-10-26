@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.page(params[:page]).per(16)
+    @users = User.page(params[:page]).per(16).order(nickname: :asc)# orderメソッドで名前の昇順
   end
 
   def show
