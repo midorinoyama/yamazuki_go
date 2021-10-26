@@ -8,9 +8,19 @@
     <script src="https://kit.fontawesome.com/438fa90fd1.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"><%#bxsliderのファイル呼びだし%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  </head>
   <body>
+    <script><%#slider設定、headに記述すると縦に並ぶ%>
+        $(document).ready(function(){
+          $('.slider').bxSlider({
+            auto: true
+          });
+        });
+    </script>
     <%= render 'layouts/header' %>
     <main>
       <p id="notice"><%= notice %></p>

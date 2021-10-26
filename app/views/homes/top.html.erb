@@ -1,10 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-11 col-lg-8 mx-auto mt-5">
+    <div class="col-11 col-lg-8 mx-auto text-center">
       <h1>Welcome to <i class="fas fa-mountain"></i><strong>YAMAZUKI</strong>!</h1>
+        <div class="slider">
+          <div><%= image_tag 'IMG_20200810_131815.jpg' %></div>
+          <div><%= image_tag 'IMG_20191108_133030.jpg' %></div>
+          <div><%= image_tag 'IMG_20191108_133606.jpg' %></div>
+          <div><%= image_tag 'IMG_20191108_132029.jpg' %></div>
+          <div><%= image_tag 'IMG_20170927_105820.jpg' %></div>
+        </div>
         <p class="mt-5">当サイトは登山写真投稿サイトです。</p>
         <p>同じ景色は二度と出会えない、登山の楽しさを写真で共有したい想いから生まれました。</p>
-        <p> 登山の中で、あなたの心に残る一枚を投稿してください！</p>
+        <p> 登山での出来事、あなたの心に残る一枚を投稿してください！</p>
         <div class="btn-wrapper col-11 mx-auto mt-5">
            <div class="row">
              <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3" %>
