@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(11).reverse_order # pageメソッドでそのユーザーに紐づく投稿のみ表示
+    @posts = @user.posts.page(params[:page]).per(11).order(filmed_on: :desc) # pageメソッドでそのユーザーに紐づく投稿orderで撮影日の新着順
   end
 
   def edit
