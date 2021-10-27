@@ -23,9 +23,7 @@ yamazuki_go
 /自分の登山写真を投稿できる、いつどの山にったのか記録（アルバム）としても利用できる
 
 ## 設計書
-PFのテーマ合格後に設計書の作成に取り組む予定
-
-## チャレンジ要素一覧
+### 機能一覧
 https://docs.google.com/spreadsheets/d/1hae4FHOlYjAFBkyVTHIsM70NyQriCNRonMSANagf56g/edit#gid=0
 
 ## 開発環境
