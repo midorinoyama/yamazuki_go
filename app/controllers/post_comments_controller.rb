@@ -12,7 +12,7 @@ class PostCommentsController < ApplicationController
     if @post_comment.save
       redirect_to post_path(@post.id), notice: "コメントしました"
     else
-      redirect_to post_path(@post.id)#render 'posts/show'で、空欄で投稿しページネーションを選ぶとルーティングエラーになる
+      redirect_to post_path(@post.id) # render 'posts/show'で、空欄で投稿しページネーションを選ぶとルーティングエラーになる
     end
   end
 
