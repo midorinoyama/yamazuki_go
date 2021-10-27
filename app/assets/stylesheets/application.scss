@@ -16,3 +16,22 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+ #error_explanation {
+   color: red;
+ }
+
+ #notice {
+  color: green;
+ }
+
+.heart-btn {
+ color: #808080;
+ font-size: 25px;
+}
+
+.noheart-btn {
+ color: red;
+ font-size: 25px;
+}
+

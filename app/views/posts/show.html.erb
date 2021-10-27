@@ -1,14 +1,33 @@
-<div>
-  <h2>投稿詳細画面</h2>
-  <%= attachment_image_tag @post, :image, :fill, 200, 200 %>
-  <p>投稿ユーザー画像：<%#= image_tag('sample-author1.jpg') %></p>
-  <p>山:</p><%= @post.mountain %>
-  <p>場所:</p><%= @post.prefecture %>
-  <p>撮影日:</p><%= @post.filmed_on %>
-  <p>説明：<%= @post.content %></p>
-  <p>ユーザーネーム：<%= @post.user.nickname %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "編集する", edit_post_path(@post.id) %>
-  <% end %>
-  <%= render "favorites/favorite-btn", post: @post %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12 col-lg-5">
+      <%= attachment_image_tag @post, :image, :fill, 400, 500 %>
+    </div>
+    <div class="col-12 col-lg-7">
+        <div class="field">
+            <h1 class="post-heading"><%= link_to user_path(@post.user) do %>
+              <%= attachment_image_tag @post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class:"mt-3 rounded-circle" %>
+            <% end %>
+            <%= @post.user.nickname %>さんの投稿</h1>
+            <p><%= @post.mountain %>(<%= @post.prefecture %>) |
+            撮影日:<%= @post.filmed_on.strftime('%Y/%m/%d') %></p>
+            <h5 class="text-title"><%= @post.title %></h5>
+            <p class="text-body"><%=safe_join(@post.content.split("\n"),tag(:br))%></p><%#text\_areaの改行とスペース表示%>
+            <p class="text-time text-right">投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+            <p class="favorite-btn text-right"><%= render 'favorites/favorite-btn', post: @post %></p>
+        </div>
+
+        <div class="field text-right">
+          <% if @post.user == current_user %>
+            <%= link_to "投稿内容を編集する", edit_post_path(@post.id), class: "btn btn-outline-primary" %>
+          <% end %>
+        </div>
+        <div class="field-link text-right mt-5">
+          <%= link_to "一覧に戻る", posts_path, class: "btn btn-secondary"%>
+        </div>
+        <h4 class="comment-area mt-5">コメント一覧(<%= @post.post_comments.count %>)件</h4>
+          <%= render 'posts/comment', post: @post, post_comment: @post_comment, post_comments: @post_comments %>
+    </div>
+  </div>
 </div>
+
