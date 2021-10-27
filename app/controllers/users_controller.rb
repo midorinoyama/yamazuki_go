@@ -46,6 +46,13 @@ class UsersController < ApplicationController
     # findやwhereメソッドはArrayオブジェクト(配列)、pageの使用方法が変わる(通常はActiveRecordオブジェクトに対して)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "このユーザーは退会しました。ご利用ありがとうございました。"
+    redirect_to :root
+  end
+
   private
 
   def user_params
