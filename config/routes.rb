@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # deivseを使用するURLにusersを含む
   root to: 'homes#top'
-  resources :users, only: [:index, :show, :edit, :update] do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]
   end
   get 'users/:id/followings' => 'users#followings', as: 'followings'

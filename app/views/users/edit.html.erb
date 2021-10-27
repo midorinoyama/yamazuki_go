@@ -33,6 +33,9 @@
         <div class="form-group text-center">
           <%= f.submit "この内容で保存する", class: "btn btn-primary" %>
         </div>
+        <div class="form-group text-center mt-5">
+          <%= link_to "*退会の場合はこちら*", user_path(@user.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に退会しますか？投稿したデータは復元できません" %>
+        </div>
        <% end %>
       </div>
     </div>
