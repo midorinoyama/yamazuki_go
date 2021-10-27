@@ -4,11 +4,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if @user = User.find(params[:id])
-      @posts = @user.posts.page(params[:page]).per(11).order(filmed_on: :desc) # pageメソッドでそのユーザーに紐づく投稿orderで撮影日の新着順
-    else
-      redirect_to :index, notice: "このユーザーは退会"
-    end
+    @user = User.find(params[:id])
+    @posts = @user.posts.page(params[:page]).per(11).order(filmed_on: :desc) # pageメソッドでそのユーザーに紐づく投稿orderで撮影日の新着順
   end
 
   def edit
@@ -52,7 +49,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[notice] = "退会しました"
+    flash[:notice] = "このユーザーは退会しました。ご利用ありがとうございました。"
     redirect_to :root
   end
 
