@@ -4,8 +4,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(11).order(filmed_on: :desc) # pageメソッドでそのユーザーに紐づく投稿orderで撮影日の新着順
+    if @user = User.find(params[:id])
+      @posts = @user.posts.page(params[:page]).per(11).order(filmed_on: :desc) # pageメソッドでそのユーザーに紐づく投稿orderで撮影日の新着順
+    else
+      redirect_to :index, notice: "このユーザーは退会"
+    end
   end
 
   def edit
@@ -44,6 +47,13 @@ class UsersController < ApplicationController
     # 見つけたpost_idの情報をPostsテーブルから探し代入
     @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
     #findやwhereメソッドはArrayオブジェクト(配列)、pageの使用方法が変わる(通常はActiveRecordオブジェクトに対して)
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[notice] = "退会しました"
+    redirect_to :root
   end
 
   private
