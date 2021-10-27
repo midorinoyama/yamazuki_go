@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "このユーザーは退会しました。ご利用ありがとうございました。"
-    redirect_to :root
+    redirect_to root_path
   end
 
   private
