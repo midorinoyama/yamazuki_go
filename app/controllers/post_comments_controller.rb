@@ -1,4 +1,5 @@
 class PostCommentsController < ApplicationController
+  
   def create
     @post = Post.find(params[:post_id])
     # コメントをする対象の投稿を見つける
