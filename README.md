@@ -54,4 +54,3 @@ https://docs.google.com/spreadsheets/d/1hae4FHOlYjAFBkyVTHIsM70NyQriCNRonMSANagf
 https://fontawesome.com/
 - ぱくたそ (写真素材) テストユーザーの投稿で利用   
 https://www.pakutaso.com/    
-- Topページのスライド画像は自身で撮影したもの
