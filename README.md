@@ -50,8 +50,8 @@ https://docs.google.com/spreadsheets/d/1hae4FHOlYjAFBkyVTHIsM70NyQriCNRonMSANagf
 - IDE：Cloud9
 
 ## 使用素材
-- Font Awesome(Webアイコンフォトサービス)
+- Font Awesome(Webアイコンフォトサービス)  
 https://fontawesome.com/
-- ぱくたそ (写真素材)
-https://www.pakutaso.com/
-- 写真の一部は自身で撮影したものも使用
+- ぱくたそ (写真素材)    
+https://www.pakutaso.com/    
+- Topページのスライド画像は自身で撮影したもの
