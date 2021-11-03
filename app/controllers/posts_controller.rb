@@ -40,11 +40,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-       #@post.tags.destroy_all
-       #tags = Vision.get_image_data(@post.image)# Visionモデルに画像を渡し解析
-       #tags.each do |tag|
-         #@post.tags.create(name: tag)
-       #end
+       @post.tags.destroy_all
+       tags = Vision.get_image_data(@post.image)# Visionモデルに画像を渡し解析
+       tags.each do |tag|
+         @post.tags.create(name: tag)
+       end
       redirect_to post_path(@post.id), notice: "編集に成功しました"
     else
       render :edit
