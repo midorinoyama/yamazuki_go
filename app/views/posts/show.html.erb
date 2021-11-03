@@ -3,6 +3,7 @@
     <div class="col-12 col-lg-5">
       <%= attachment_image_tag @post, :image, :fill, 400, 500 %>
       <div class="tag-box">
+        <i class="fas fa-tags"></i>
         <% @post.tags.each do |tag| %>
           <span class="label"><%= tag.name %></span>
         <% end %>
