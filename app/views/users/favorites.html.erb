@@ -3,5 +3,9 @@
   <div class="row mt-5 ">
     <%= render 'posts/index', posts: @favorite_posts%>
   </div>
-  <%= paginate @favorite_posts %>
+  <div class="row">
+    <div class="mx-auto">
+     <%= paginate @favorite_posts %>
+    </div>
+  </div>
 </div>
