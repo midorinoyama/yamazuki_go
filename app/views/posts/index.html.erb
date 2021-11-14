@@ -3,6 +3,10 @@
   <div class="row mt-5">
     <%= render 'posts/index', posts: @posts %>
   </div>
-  <div class="paginate"><%= paginate @posts %></div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @posts %>
+    </div>
+  </div>
 </div>
 

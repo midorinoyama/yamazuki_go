@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+
   def index
-    @users = User.page(params[:page]).per(16).order(nickname: :asc)# orderメソッドで名前の昇順
+    @users = User.page(params[:page]).per(16).order(nickname: :asc) # orderメソッドで名前の昇順
   end
 
   def show
@@ -43,14 +44,14 @@ class UsersController < ApplicationController
     @favorite_posts = Post.find(favorites)
     # 見つけたpost_idの情報をPostsテーブルから探し代入
     @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
-    #findやwhereメソッドはArrayオブジェクト(配列)、pageの使用方法が変わる(通常はActiveRecordオブジェクトに対して)
+    # findやwhereメソッドはArrayオブジェクト(配列)、pageの使用方法が変わる(通常はActiveRecordオブジェクトに対して)
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "このユーザーは退会しました。ご利用ありがとうございました。"
-    redirect_to :root
+    redirect_to root_path
   end
 
   private

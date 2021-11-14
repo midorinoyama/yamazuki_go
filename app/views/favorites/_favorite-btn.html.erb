@@ -1,10 +1,10 @@
 <% unless post.user == current_user %><%#自分が投稿した写真には表示させないようにする%>
   <% if post.favorited_by?(current_user) %><%##favoritesテーブルにuser_idがそんざいしているかどうか=いいねしたかどうか判断%>
-    <%= link_to post_favorites_path(post), method: :delete do %>
+    <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
       <span class="fas fa-heart noheart-btn"></span>
     <% end %>
   <% else %>
-    <%= link_to post_favorites_path(post), method: :post do %>
+    <%= link_to post_favorites_path(post), method: :post, remote: true do %>
       <span class="far fa-heart heart-btn"></span>
     <% end %>
   <% end %>

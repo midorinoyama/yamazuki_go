@@ -1,4 +1,5 @@
 class PostCommentsController < ApplicationController
+  
   def create
     @post = Post.find(params[:post_id])
     # コメントをする対象の投稿を見つける
@@ -12,7 +13,7 @@ class PostCommentsController < ApplicationController
     if @post_comment.save
       redirect_to post_path(@post.id), notice: "コメントしました"
     else
-      redirect_to post_path(@post.id)#render 'posts/show'で、空欄で投稿しページネーションを選ぶとルーティングエラーになる
+      redirect_to post_path(@post.id) # render 'posts/show'で、空欄で投稿しページネーションを選ぶとルーティングエラーになる
     end
   end
 

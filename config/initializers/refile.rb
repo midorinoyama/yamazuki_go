@@ -1,0 +1,1 @@
+Refile.backends['store'] = Refile::Backend::FileSystem.new('public/uploads/')#画像のアップロード先変更

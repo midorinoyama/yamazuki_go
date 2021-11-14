@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   def new
     @post = Post.new
   end
@@ -7,6 +8,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      tags = Vision.get_image_data(@post.image)# Visionモデルに画像を渡し解析
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       redirect_to post_path(@post), notice: "投稿に成功しました"
     else
       render :new
@@ -35,6 +40,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+       @post.tags.destroy_all
+       tags = Vision.get_image_data(@post.image)# Visionモデルに画像を渡し解析
+       tags.each do |tag|
+         @post.tags.create(name: tag)
+       end
       redirect_to post_path(@post.id), notice: "編集に成功しました"
     else
       render :edit
