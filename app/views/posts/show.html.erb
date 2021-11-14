@@ -20,7 +20,9 @@
             <h5 class="text-title"><%= @post.title %></h5>
             <p class="text-body"><%=safe_join(@post.content.split("\n"),tag(:br))%></p><%#text\_areaの改行とスペース表示%>
             <p class="text-time text-right">投稿日:<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-            <p class="favorite-btn text-right"><%= render 'favorites/favorite-btn', post: @post %></p>
+            <div class="text-right">
+              <div id="favorite_btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></div>
+            </div>
         </div>
 
         <div class="field text-right">
