@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   # deivseを使用するURLにusersを含む
   root to: 'homes#top'
   resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    member do # URLにuserを認識するidがつく、collectionはidがつかない
+      get 'followings'
+      get 'followers'
+      get 'favorites'
+    end
     resource :relationships, only: [:create, :destroy]
   end
-  get 'users/:id/followings' => 'users#followings', as: 'followings'
-  get 'users/:id/followers' => 'users#followers', as: 'followers'
-  get 'users/:id/favorites' => 'users#favorites', as: 'favorites'
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]

@@ -12,20 +12,20 @@
         </tr>
         <tr>
           <td>フォロー中</td>
-          <td><%= link_to followings_path(@user.id) do %>
+          <td><%= link_to followings_user_path(@user.id) do %>
                 <%= @user.followings.count %>
               <% end %></td>
         </tr>
         <tr>
           <td>フォロワー</td>
-          <td><%= link_to followers_path(@user.id) do %>
+          <td><%= link_to followers_user_path(@user.id) do %>
                 <%= @user.followers.count %>
               <% end %></td>
         </tr>
         <tr>
         <% if current_user == @user %>
           <td>いいね！した写真</td>
-          <td><%= link_to favorites_path(@user.id) do %>
+          <td><%= link_to favorites_user_path(@user.id) do %>
                 <%= @user.favorites.count %>
               <% end %></td>
         <% end %>
