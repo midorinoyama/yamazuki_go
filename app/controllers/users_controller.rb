@@ -38,7 +38,8 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @favorite_posts = User.find(params[:id]).favorite_posts.page(params[:page]).per(12)
+    @user = User.find(params[:id])
+    @favorite_posts = @user.favorite_posts.page(params[:page]).per(12)
   end
 
   def destroy
