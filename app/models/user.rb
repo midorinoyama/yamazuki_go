@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post # ユーザーがいいねした投稿をuser.favorite_postsで呼び出し可能
   has_many :post_comments, dependent: :destroy
   attachment :profile_image
   # refileがカラム名にアクセスするためのもの、imageはカラム名だがidはつけない
