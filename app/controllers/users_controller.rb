@@ -28,23 +28,17 @@ class UsersController < ApplicationController
   end
 
   def followings
-    user = User.find(params[:id])
-    @users = user.followings.page(params[:page]).per(16)
+    @user = User.find(params[:id])
+    @users = @user.followings.page(params[:page]).per(16)
   end
 
   def followers
-    user = User.find(params[:id])
-    @users = user.followers.page(params[:page]).per(16)
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page]).per(16)
   end
 
   def favorites
-    user = User.find(params[:id])
-    favorites = Favorite.where(user_id: user.id).pluck(:post_id)
-    # pluck:指定したモデルのカラムのレコードをすべて取得(そのユーザーがいいねしたpost_idをfavoritesテーブルから検索)
-    @favorite_posts = Post.find(favorites)
-    # 見つけたpost_idの情報をPostsテーブルから探し代入
-    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
-    # findやwhereメソッドはArrayオブジェクト(配列)、pageの使用方法が変わる(通常はActiveRecordオブジェクトに対して)
+    @favorite_posts = User.find(params[:id]).favorite_posts.page(params[:page]).per(12)
   end
 
   def destroy
